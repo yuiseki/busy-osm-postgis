@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  postgis:
+    build:
+      context: .
+      dockerfile: docker/postgis/Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: osm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
+    volumes:
+      - postgis-data:/var/lib/postgresql/data
+    networks:
+      - busy-osm-postgis
+  pgadmin:
+    image: "dpage/pgadmin4:6.16"
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./pgadmin4/servers.json:/pgadmin4/servers.json
+      - ./pgadmin4/pgpassfile:/pgadmin4/pgpassfile
+      - pgadmin4-data:/var/lib/pgadmin
+    depends_on:
+      - postgis
+    networks:
+      - busy-osm-postgis
+
+networks:
+  busy-osm-postgis:
+    name: busy-osm-postgis
+
+volumes:
+  postgis-data:
+  pgadmin4-data:
