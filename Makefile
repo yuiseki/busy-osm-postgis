@@ -41,6 +41,7 @@ import-imposm:
 		-i \
 		--rm \
 		--mount type=bind,source=$(CURDIR)/tmp/osm/europe,target=/pbfs \
+		--mount type=bind,source=$(CURDIR)/docker/imposm/mapping.yml,target=/scripts/mapping.yml \
 		--net=busy-osm-postgis \
 		--entrypoint="" \
 		geotekne/imposm-worker:1.0.0 \
