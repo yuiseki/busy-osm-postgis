@@ -19,20 +19,8 @@ services:
     networks:
       - busy-osm-postgis
 
-  imposm-worker:
-    image: "geotekne/imposm-worker:1.0.0"
-    hostname: imposm-worker
-    environment:
-      - PARAMETERS=-i /pbfs -c busy-osm-postgis_postgis -v 15 -p 5432 -u postgres -w postgres -d imposm
-    volumes:
-      - ./tmp/osm/europe/:/pbfs
-    networks:
-      - busy-osm-postgis
-    depends_on:
-      - postgis
-
   pgadmin:
-    image: "dpage/pgadmin4:6.16"
+    image: "dpage/pgadmin4:6.18"
     ports:
       - "5050:80"
     environment:

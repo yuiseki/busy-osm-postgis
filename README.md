@@ -14,8 +14,7 @@ git clone https://github.com/yuiseki/busy-osm-postgis.git
 cd busy-osm-postgis
 docker compose up -d
 make
-make docker-build
-make import-osm
+make import-imposm
 ```
 
 - Open http://localhost:5050/
@@ -25,11 +24,11 @@ make import-osm
 - Click `Server Group 1`
   - Click `postgis`
     - Click `Databases`
-      - Click `osm`
+      - Click `imposm`
         - Click `Schemas`
           - Click `public`
             - Click `Tables`
-              - Click `planet_osm_polygon`
+              - Click `osm_buildings`
                 - Click `View Data` (or `Alt + Shift + V`)
                   - Scroll horizontally and find column named `way`
                     - Click `View all geometries in this column` button
@@ -44,11 +43,11 @@ This repos depends on the following softwares:
   - https://postgis.net/
   - Most important software
   - Store OpenStreetMap data as SQL DB
-- osm2pgsql
-  - https://github.com/openstreetmap/osm2pgsql
-  - Also important software
-  - Import OpenStreetMap data into DB
 - pgAdmin
   - https://github.com/pgadmin-org/pgadmin4
   - Very useful software
   - Preview the data in PostgreSQL
+- osm2pgsql
+  - https://github.com/openstreetmap/osm2pgsql
+  - Also important software
+  - Import OpenStreetMap data into DB

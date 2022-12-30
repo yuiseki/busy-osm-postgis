@@ -4,6 +4,7 @@ pbf = tmp/osm/$(REGION)-latest.osm.pbf
 
 targets = \
 	$(pbf) \
+	docker-pull \
 	docker-build
 
 all: $(targets)
@@ -11,7 +12,9 @@ all: $(targets)
 # Pull docker image if not exists
 .PHONY: docker-pull
 docker-pull:
-	docker image inspect yuiseki/busy-osm-postgis:latest > /dev/null || docker pull yuiseki/busy-osm-postgis:latest
+	docker image inspect postgis/postgis:15-3.3 > /dev/null || docker pull postgis/postgis:15-3.3
+	docker image inspect geotekne/imposm-worker:1.0.0 > /dev/null || docker pull geotekne/imposm-worker:1.0.0
+	docker image inspect dpage/pgadmin4:6.18 > /dev/null || docker pull dpage/pgadmin4:6.18
 
 # Build docker image if not exists
 .PHONY: docker-build
@@ -31,6 +34,24 @@ $(pbf):
 		--continue-at - \
 		--output $(pbf) \
 		https://download.geofabrik.de/$(REGION)-latest.osm.pbf
+
+.PHONY: import-imposm
+import-imposm:
+	docker run \
+		-i \
+		--rm \
+		--mount type=bind,source=$(CURDIR)/tmp/osm/europe,target=/pbfs \
+		--net=busy-osm-postgis \
+		--entrypoint="" \
+		geotekne/imposm-worker:1.0.0 \
+			/scripts/import-pg.sh \
+				-i /pbfs \
+				-c busy-osm-postgis_postgis \
+				-v 15 \
+				-p 5432 \
+				-u postgres \
+				-w postgres \
+				-d imposm
 
 .PHONY: import-osm2pgsql
 import-osm2pgsql:
