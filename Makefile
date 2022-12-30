@@ -3,11 +3,12 @@ include .env
 pbf = tmp/osm/$(REGION)-latest.osm.pbf
 
 targets = \
-	$(pbf)
+	$(pbf) \
+	docker-build
 
 all: $(targets)
 
-# Pull  docker image if not exists
+# Pull docker image if not exists
 .PHONY: docker-pull
 docker-pull:
 	docker image inspect yuiseki/busy-osm-postgis:latest > /dev/null || docker pull yuiseki/busy-osm-postgis:latest

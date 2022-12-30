@@ -1,3 +1,4 @@
 postgis:5432:postgres:postgres:postgres
 postgis:5432:osm2pgsql:postgres:postgres
 postgis:5432:osmosis:postgres:postgres
+postgis:5432:imposm:postgres:postgres
