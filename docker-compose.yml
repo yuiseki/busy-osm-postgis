@@ -35,6 +35,18 @@ services:
     networks:
       - busy-osm-postgis
 
+  martin:
+    image: "maplibre/martin"
+    restart: unless-stopped
+    ports:
+      - "4000:3000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgis/imposm
+    depends_on:
+      - postgis
+    networks:
+      - busy-osm-postgis
+
 networks:
   busy-osm-postgis:
     name: busy-osm-postgis
