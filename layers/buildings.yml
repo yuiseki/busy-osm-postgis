@@ -1,0 +1,15 @@
+id: osm_buildings
+type: fill
+source: public.osm_buildings.geometry
+source-layer: public.osm_buildings.geometry
+paint:
+  fill-antialias: true
+  fill-color:
+    base: 1
+    stops:
+      - - 15.5
+        - '#f2eae2'
+      - - 16
+        - '#dfdbd7'
+
+

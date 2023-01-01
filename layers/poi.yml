@@ -1,0 +1,7 @@
+id: osm_poi_point
+type: circle
+source: public.osm_poi_point.geometry
+source-layer: public.osm_poi_point.geometry
+paint:
+  circle-color: lightblue
+

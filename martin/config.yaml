@@ -1,0 +1,39 @@
+connection_string: 'postgres://postgres:postgres@postgis/imposm'
+
+default_srid: 4326
+
+table_sources:
+  public.osm_poi_point:
+    id: public.osm_poi_point
+    schema: public
+    table: osm_poi_point
+    srid: 4326
+    geometry_column: geometry
+    id_column: osm_id
+    minzoom: 0
+    maxzoom: 30
+    extent: 4096
+    buffer: 64
+    clip_geom: true
+    geometry_type: POINT
+    properties:
+      osm_id: int4
+      name: text
+  public.osm_buildings:
+    id: public.osm_buildings
+    schema: public
+    table: osm_buildings
+    srid: 4326
+    geometry_column: geometry
+    id_column: osm_id
+    minzoom: 0
+    maxzoom: 30
+    extent: 4096
+    buffer: 64
+    clip_geom: true
+    geometry_type: GEOMETRY
+    properties:
+      osm_id: int4
+      name: text
+
+function_sources:

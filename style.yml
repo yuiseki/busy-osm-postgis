@@ -1,0 +1,19 @@
+version: 8
+name: martin
+id: martin
+metadata:
+  mapbox:autocomposite: false
+bearing: 0
+pitch: 0
+sources:
+  public.osm_poi_point.geometry:
+    type: vector
+    url: http://localhost:4000/public.osm_poi_point.geometry.json
+  public.osm_buildings.geometry:
+    type: vector
+    url: http://localhost:4000/public.osm_buildings.geometry.json
+sprite: http://localhost:8080/openmaptiles/osm-bright-gl-style/sprite
+glyphs: http://localhost:8080/openmaptiles/fonts/{fontstack}/{range}.pbf
+layers:
+  - !!inc/file ./layers/buildings.yml
+  - !!inc/file ./layers/poi.yml
