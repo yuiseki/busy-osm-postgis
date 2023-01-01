@@ -72,7 +72,7 @@ import-osm2pgsql:
 				--username postgres \
 				--host postgis \
 				--port 5432 \
-				$(pbf)
+				/$(pbf)
 
 .PHONY: setup-osmosis
 setup-osmosis:
