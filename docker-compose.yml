@@ -36,7 +36,7 @@ services:
       - busy-osm-postgis
 
   martin:
-    image: "maplibre/martin:v0.7.1"
+    image: "maplibre/martin:v0.7.2"
     restart: unless-stopped
     ports:
       - "4000:3000"
