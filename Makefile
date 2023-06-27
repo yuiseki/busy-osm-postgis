@@ -13,8 +13,8 @@ all: $(targets)
 .PHONY: docker-pull
 docker-pull:
 	docker image inspect postgis/postgis:15-3.3 > /dev/null || docker pull postgis/postgis:15-3.3
-	docker image inspect geotekne/imposm-worker:1.0.0 > /dev/null || docker pull geotekne/imposm-worker:1.0.0
 	docker image inspect dpage/pgadmin4:6.18 > /dev/null || docker pull dpage/pgadmin4:6.18
+	docker image inspect geotekne/imposm-worker:1.0.0 > /dev/null || docker pull geotekne/imposm-worker:1.0.0
 
 # Build docker image if not exists
 .PHONY: docker-build
