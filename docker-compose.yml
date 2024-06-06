@@ -20,7 +20,7 @@ services:
       - busy-osm-postgis
 
   pgadmin:
-    image: "dpage/pgadmin4:8.7"
+    image: "dpage/pgadmin4:8.8"
     ports:
       - "5050:80"
     environment:
